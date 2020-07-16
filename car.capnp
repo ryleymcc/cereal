@@ -101,6 +101,9 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     gpsMalfunction @94;
     startupOneplus @82;
     processNotRunning @95;
+    preKeepHandsOnWheel @96;
+    promptKeepHandsOnWheel @97;
+    keepHandsOnWheel @98;
 
     radarCanErrorDEPRECATED @15;
     radarCommIssueDEPRECATED @67;
