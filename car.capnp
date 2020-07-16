@@ -100,7 +100,10 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     deviceFalling @90;
     fanMalfunction @91;
     cameraMalfunction @92;
-
+    preKeepHandsOnWheel @94;
+    promptKeepHandsOnWheel @95;
+    keepHandsOnWheel @96;
+    
     gasUnavailableDEPRECATED @3;
     dataNeededDEPRECATED @16;
     modelCommIssueDEPRECATED @27;
