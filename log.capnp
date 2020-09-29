@@ -539,8 +539,18 @@ struct ControlsState @0x97ff69c53601abf1 {
   cumLagMs @15 :Float32;
   canErrorCounter @57 :UInt32;
 
+  # speed limit control
+  speedLimit @62 :Float32;
+  speedLimitControlState @63 :SpeedLimitControlState;
+  speedLimitOffset @64 :Float32;
+  distToSpeedLimit @65 :Float32;
+  isMapSpeedLimit @66 :Bool;
+
   # turn control
   distToTurn @59 :Float32;
+  turnSpeed @67 :Float32;
+  turnSpeedControlState @68 :SpeedLimitControlState;
+  turnSign @69 :Int16;
 
   lateralControlState :union {
     indiState @52 :LateralINDIState;
@@ -561,6 +571,13 @@ struct ControlsState @0x97ff69c53601abf1 {
     pid @1;
     stopping @2;
     starting @3;
+  }
+
+  enum SpeedLimitControlState {
+    inactive @0; # No speed limit set or not enabled by parameter.
+    tempInactive @1; # User wants to ignore speed limit until it changes.
+    adapting @2; # Reducing speed to match new speed limit.
+    active @3; # Cruising at speed limit.
   }
 
   enum AlertStatus {
@@ -776,7 +793,19 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
 
   processingDelay @29 :Float32;
 
-  distToTurn @34 :Float32;
+  turnControllerState @32 : ControlsState.TurnControllerState;
+  turnAcc @33 :Float32;
+
+  speedLimitControlState @34 :ControlsState.SpeedLimitControlState; 
+  speedLimit @35 :Float32;
+  speedLimitOffset @36 :Float32;
+  distToSpeedLimit @37 :Float32;
+  isMapSpeedLimit @38 :Bool;
+
+  distToTurn @39 :Float32;
+  turnSpeed @40 :Float32;
+  turnSpeedControlState @41 :ControlsState.SpeedLimitControlState;
+  turnSign @42 :Int16;
 
   enum LongitudinalPlanSource {
     cruise @0;
@@ -785,6 +814,7 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
     mpc3 @3;
     model @4;
     turn @5;
+    limit @6;
   }
 
   # deprecated
