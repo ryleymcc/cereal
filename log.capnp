@@ -517,8 +517,9 @@ struct ControlsState @0x97ff69c53601abf1 {
   cumLagMs @15 :Float32;
   canErrorCounter @57 :UInt32;
 
-  # traffic signals
+  # speed limit control
   speedLimit @58 :Float32;
+  speedLimitControlState @59 :SpeedLimitControlState; 
 
   lateralControlState :union {
     indiState @52 :LateralINDIState;
@@ -538,6 +539,13 @@ struct ControlsState @0x97ff69c53601abf1 {
     pid @1;
     stopping @2;
     starting @3;
+  }
+
+  enum SpeedLimitControlState {
+    inactive @0; # No speed limit set or not enabled by parameter.
+    tempInactive @1; # User wants to ignore speed limit until it changes.
+    adapting @2; # Reducing speed to match new speed limit.
+    active @3; # Cruising at speed limit.
   }
 
   enum AlertStatus {
@@ -731,6 +739,7 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
   longitudinalPlanSource @15 :LongitudinalPlanSource;
 
   processingDelay @29 :Float32;
+  speedLimitControlState @32 :ControlsState.SpeedLimitControlState; 
 
   enum LongitudinalPlanSource {
     cruise @0;
