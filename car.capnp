@@ -103,7 +103,10 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     preKeepHandsOnWheel @94;
     promptKeepHandsOnWheel @95;
     keepHandsOnWheel @96;
-    
+    speedLimitActive @97;
+    speedLimitDecrease @98;
+    speedLimitIncrease @99;
+
     gasUnavailableDEPRECATED @3;
     dataNeededDEPRECATED @16;
     modelCommIssueDEPRECATED @27;
