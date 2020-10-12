@@ -104,6 +104,9 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     preKeepHandsOnWheel @96;
     promptKeepHandsOnWheel @97;
     keepHandsOnWheel @98;
+    speedLimitActive @99;
+    speedLimitDecrease @100;
+    speedLimitIncrease @101;
 
     radarCanErrorDEPRECATED @15;
     radarCommIssueDEPRECATED @67;
