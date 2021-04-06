@@ -553,6 +553,9 @@ struct ControlsState @0x97ff69c53601abf1 {
   speedLimit @58 :Float32;
   speedLimitControlState @59 :SpeedLimitControlState; 
 
+  # turn control
+  distToTurn @60 :Float32;
+
   lateralControlState :union {
     indiState @52 :LateralINDIState;
     pidState @53 :LateralPIDState;
@@ -847,6 +850,8 @@ struct Plan {
   processingDelay @29 :Float32;
   speedLimitControlState @32 :ControlsState.SpeedLimitControlState; 
   speedLimit @33 :Float32;
+
+  distToTurn @34 :Float32;
 
 
   struct GpsTrajectory {
