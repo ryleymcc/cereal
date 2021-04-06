@@ -846,6 +846,7 @@ struct Plan {
 
   processingDelay @29 :Float32;
   speedLimitControlState @32 :ControlsState.SpeedLimitControlState; 
+  speedLimit @33 :Float32;
 
 
   struct GpsTrajectory {
