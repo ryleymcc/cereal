@@ -41,6 +41,7 @@ service_list = {
   "liveLocationKalman": Service(8054, True, 20., 2),
   "uiLayoutState": Service(8060, True, 0.),
   "liveParameters": Service(8064, True, 20., 2),
+  "liveMapData": Service(8065, True, 0.),
   "cameraOdometry": Service(8066, True, 20., 5),
   "lateralPlan": Service(8067, True, 20., 2),
   "thumbnail": Service(8069, True, 0.2, 1),
