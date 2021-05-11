@@ -1308,6 +1308,10 @@ struct LiveMapData {
   turnSpeedLimitAheadDistance @11 :Float32;
   turnSpeedLimitAheadSign @12 :Int16;
   lastGpsTimestamp @13 :Int64;  # Milliseconds since January 1, 1970.
+  lastGpsLatitude @14 :Float64;
+  lastGpsLongitude @15 :Float64;
+  lastGpsSpeed @16 :Float32;
+  lastGpsLBearingDeg @17 :Float32;
 }
 
 struct CameraOdometry {
