@@ -557,6 +557,11 @@ struct ControlsState @0x97ff69c53601abf1 {
   turnControllerState @60 :TurnControllerState;
   turnAcc @61 :Float32;
 
+  # speed limit control
+  speedLimit @62 :Float32;
+  speedLimitControlState @63 :SpeedLimitControlState;
+  speedLimitOffset @64 :Float32;
+
   lateralControlState :union {
     indiState @52 :LateralINDIState;
     pidState @53 :LateralPIDState;
@@ -577,6 +582,13 @@ struct ControlsState @0x97ff69c53601abf1 {
     pid @1;
     stopping @2;
     starting @3;
+  }
+
+  enum SpeedLimitControlState {
+    inactive @0; # No speed limit set or not enabled by parameter.
+    tempInactive @1; # User wants to ignore speed limit until it changes.
+    adapting @2; # Reducing speed to match new speed limit.
+    active @3; # Cruising at speed limit.
   }
 
   enum TurnControllerState {
@@ -821,6 +833,9 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
   turnControllerState @35 : ControlsState.TurnControllerState;
   turnAcc @36 :Float32;
 
+  speedLimitControlState @37 :ControlsState.SpeedLimitControlState; 
+  speedLimit @38 :Float32;
+  speedLimitOffset @39 :Float32;
   enum LongitudinalPlanSource {
     cruise @0;
     lead0 @1;
@@ -828,6 +843,7 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
     lead2 @3;
     e2e @4;
     turn @5;
+    limit @6;
   }
 
   # deprecated
