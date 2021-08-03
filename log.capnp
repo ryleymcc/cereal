@@ -561,6 +561,14 @@ struct ControlsState @0x97ff69c53601abf1 {
   speedLimit @62 :Float32;
   speedLimitControlState @63 :SpeedLimitControlState;
   speedLimitOffset @64 :Float32;
+  distToSpeedLimit @65 :Float32;
+  isMapSpeedLimit @66 :Bool;
+
+  # map turn control
+  distToTurn @67 :Float32;
+  turnSpeed @68 :Float32;
+  turnSpeedControlState @69 :SpeedLimitControlState;
+  turnSign @70 :Int16;
 
   lateralControlState :union {
     indiState @52 :LateralINDIState;
@@ -836,6 +844,14 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
   speedLimitControlState @37 :ControlsState.SpeedLimitControlState; 
   speedLimit @38 :Float32;
   speedLimitOffset @39 :Float32;
+  distToSpeedLimit @40 :Float32;
+  isMapSpeedLimit @41 :Bool;
+
+  distToTurn @42 :Float32;
+  turnSpeed @43 :Float32;
+  turnSpeedControlState @44 :ControlsState.SpeedLimitControlState;
+  turnSign @45 :Int16;
+
   enum LongitudinalPlanSource {
     cruise @0;
     lead0 @1;
@@ -844,6 +860,7 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
     e2e @4;
     turn @5;
     limit @6;
+    turnlimit @7;
   }
 
   # deprecated
@@ -1362,6 +1379,22 @@ struct LiveMapDataDEPRECATED {
   mapValid @11 :Bool;
 }
 
+struct LiveMapData {
+  speedLimitValid @0 :Bool;
+  speedLimit @1 :Float32;
+  speedLimitAheadValid @2 :Bool;
+  speedLimitAhead @3 :Float32;
+  speedLimitAheadDistance @4 :Float32;
+  turnSpeedLimitValid @5 :Bool;
+  turnSpeedLimit @6 :Float32;
+  turnSpeedLimitEndDistance @7 :Float32;
+  turnSpeedLimitSign @8 :Int16;
+  turnSpeedLimitsAhead @9 :List(Float32);
+  turnSpeedLimitsAheadDistances @10 :List(Float32);
+  turnSpeedLimitsAheadSigns @11 :List(Int16);
+  lastGpsTimestamp @12 :Int64;  # Milliseconds since January 1, 1970.
+}
+
 struct CameraOdometry {
   frameId @4 :UInt32;
   timestampEof @5 :UInt64;
@@ -1443,6 +1476,7 @@ struct Event {
     driverMonitoringState @71: DriverMonitoringState;
     liveLocationKalman @72 :LiveLocationKalman;
     modelV2 @75 :ModelDataV2;
+    liveMapData @80: LiveMapData;
 
     # camera stuff, each camera state has a matching encode idx
     roadCameraState @2 :FrameData;
