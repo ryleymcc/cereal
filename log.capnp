@@ -1388,6 +1388,18 @@ struct LiveMapData {
   lastGpsBearingAccuracyDeg @18 :Float32;
 }
 
+struct MFDebug {
+  actSteer @0 :Float32;
+  newSteer @1 :Int16;
+  applySteer @2 :Int16;
+  steeringTorqueEps @3 :Int16;
+  gas @4 :Float32;
+  brake @5 :Float32;
+  pcmAccelCmdNorm @6 :Float32;
+  pcmAccelCmd @7 :Float32;
+  measGas @8 :Float32;
+}
+
 struct CameraOdometry {
   frameId @4 :UInt32;
   timestampEof @5 :UInt64;
@@ -1470,6 +1482,7 @@ struct Event {
     liveLocationKalman @72 :LiveLocationKalman;
     modelV2 @75 :ModelDataV2;
     liveMapData @80: LiveMapData;
+    mfDebug @81: MFDebug;
 
     # camera stuff, each camera state has a matching encode idx
     roadCameraState @2 :FrameData;
